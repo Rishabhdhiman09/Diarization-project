@@ -14,7 +14,7 @@ SECRET_KEY = 'd+&&p1dg&il=!si_ry&h&c1ru0sq4cjvbzm$igavi-1bcotjqy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

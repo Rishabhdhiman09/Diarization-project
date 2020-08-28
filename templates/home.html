@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diarizer</title>
+</head>
+<body>
+    <div class="container">
+        <form action="transcript" method="POST" enctype="multipart/form-data">
+            <h1>Diarizer</h1>
+            {% csrf_token %}
+            Enter Meeting Title:<input type="text" name="meeting_title">
+            <label for="file_format">File Format:</label>
+            <select name="file_format" id="file_format">
+                <option value="wav">.wav</option>
+                <option value="mp3">.mp3</option>
+            </select><br>
+
+            <label for="num_speakers">Number of speakers:</label>
+            <select name="num_speakers" id="num_speakers">
+                <option value="2">2</option>
+                <option value="2">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select><br>
+            Minimum Silence Length (between 200-1000): <input type="text" name="min_sil_len"><br>
+            <label for="appt">Meeting Start Time:</label>
+            <input type="time" id="appt" name="meeting_start_time"><br>
+            Upload Audio file: <input type="file" name="multimedia"><br>
+            <input type="submit" value="Get Transcribe">
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diarizer</title>
+</head>
+<div class="container">
+    <body>
+        <h1>Transcript</h1>
+        {% for sent in text.0  %}
+            <h5>{{ sent }}</h5>
+            <br>
+        {% endfor %}
+        <h1>Summary</h1>
+        <div class="summary">
+            <h5>{{  text.1 }}</h5>
+        </div>
+    </body>
+</div>
+</html>

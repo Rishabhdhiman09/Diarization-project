@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diarizer</title>
+</head>
+<div class="container">
+    <body>
+        <h1>{{ res.3 }} | {{ res.1 }}</h1>
+        <div class="container" id="trans">
+            {% for sent in res.0  %}
+            <h5>{{ sent }}</h5>
+            <br>
+            {% endfor %}
+        </div>
+        
+        <form action="namechange" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Actual Speakers name</h1>
+            <textarea rows = "5" cols = "60" name = "spnames">
+            </textarea><br>
+            <input type="submit" value="Apply changes">
+        </form>
+    </body>
+</div>
+</html>

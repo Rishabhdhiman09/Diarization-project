@@ -12,7 +12,7 @@
         <form action="transcript" method="POST" enctype="multipart/form-data">
             <h1>Diarizer</h1>
             {% csrf_token %}
-            Enter Meeting Title:<input type="text" name="meeting_title">
+            Meeting Title:<input type="text" name="meeting_title">
             <label for="file_format">File Format:</label>
             <select name="file_format" id="file_format">
                 <option value="wav">.wav</option>

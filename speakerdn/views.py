@@ -82,7 +82,7 @@ def transcript(request):
             
             chunk_len = (len(f) / f.samplerate)
             try:
-                current_speaker = time_list[int(total_speech_len + chunk_len/2)]
+                current_speaker = result[5 * int(total_speech_len + chunk_len/2)]
             except:
                 current_speaker = time_list[-1]
             
@@ -107,6 +107,7 @@ def transcript(request):
             text = speechTextAzure.speech_text(chunk_filename)
             if len(text) == 0:
                 continue
+            full_text.append(text)
             text = f"Speaker{current_speaker}: {[str(end.time())]} " + text
 
             print(text)

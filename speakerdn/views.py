@@ -49,7 +49,7 @@ def transcript(request):
         for e in values:
             time_list.append(int(e))
 
-    r = sr.Recognizer()
+    
     # Start hour, minute of meeting
     start_hour = int(meeting_start_time.split(":")[0])
     start_min = int(meeting_start_time.split(":")[1])

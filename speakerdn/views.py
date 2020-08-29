@@ -11,8 +11,7 @@ from itertools import groupby
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import soundfile as sf
-import speech_recognition as sr
-from . import summarizer
+from . import summarizer, speechTextAzure
 import math
 import datetime
 com_text = []
@@ -92,19 +91,26 @@ def transcript(request):
             start = datetime.datetime(100,10,10,start_hour, start_min, 0)
             end = start + datetime.timedelta(0, int(total_speech_len))
             # recognize the chunk
-            with sr.AudioFile(chunk_filename) as source:
-                audio_listened = r.record(source)
-                # try converting it to text
-                try:
-                    text = r.recognize_google(audio_listened)
-                    full_text.append(text)
-                    text = f"Speaker{current_speaker}: {[str(end.time())]} " + text
-                    print(text)
-                except sr.UnknownValueError as e:
-                    pass
-                else:
-                    text = f"{text.capitalize()}. "
-                    whole_text += text 
+            # with sr.AudioFile(chunk_filename) as source:
+            #     audio_listened = r.record(source)
+            #     # try converting it to text
+            #     try:
+            #         text = r.recognize_google(audio_listened)
+            #         full_text.append(text)
+            #         text = f"Speaker{current_speaker}: {[str(end.time())]} " + text
+            #         print(text)
+            #     except sr.UnknownValueError as e:
+            #         pass
+            #     else:
+            #         text = f"{text.capitalize()}. "
+            #         whole_text += text 
+            text = speechTextAzure.speech_text(chunk_filename)
+            if len(text) == 0:
+                continue
+            text = f"Speaker{current_speaker}: {[str(end.time())]} " + text
+
+            print(text)
+            whole_text += text
 
         #     os.remove(chunk_filename) 
         # # return the text for all chunks detected

@@ -82,7 +82,7 @@ def transcript(request):
             
             chunk_len = (len(f) / f.samplerate)
             try:
-                current_speaker = result[5 * int(total_speech_len + chunk_len/2)]
+                current_speaker = time_list[int(total_speech_len + chunk_len/2)]
             except:
                 current_speaker = time_list[-1]
             

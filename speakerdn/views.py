@@ -38,17 +38,15 @@ def transcript(request):
     else:
         pass
     uploaded_file_url = fs.url(filename)
-    result = audioSegmentation.speaker_diarization(filename = os.path.join(pwd, filename), plot_res = False, n_speakers = 2, mid_window=2.0, mid_step=0.2, 
+    result = audioSegmentation.speaker_diarization(filename = os.path.join(pwd, filename), plot_res = False, n_speakers = num_speakers, mid_window=2.0, mid_step=0.2, 
                              short_window=0.05, lda_dim=35)
     sep_list = [list(j) for i, j in groupby(result)]
-
 
     time_list = []
     for list_ in sep_list:
         values = list_[:int(len(list_)/5)]
         for e in values:
             time_list.append(int(e))
-
     
     # Start hour, minute of meeting
     start_hour = int(meeting_start_time.split(":")[0])
